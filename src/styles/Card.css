@@ -1,0 +1,21 @@
+.card {
+  border-radius: 2rem;
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50vw;
+  max-width: "600px";
+}
+
+.card-dark {
+  background-color: black;
+  border: 1rem solid white;
+  color: white;
+}
+
+.card-light {
+  background-color: white;
+  border: 1rem solid black;
+  color: black;
+}
