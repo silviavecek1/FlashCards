@@ -9,56 +9,51 @@ type FullscreenProps = {
 const Fullscreen = ({ mode }: FullscreenProps) => {
   const [fullscreen, setFullScreen] = useState(!!document.fullscreenElement);
 
-  const handleFullScreen = useCallback(() => {
+  const toggleFullScreen = useCallback(async () => {
     if (document.fullscreenElement) {
-      console.log("exiting");
-      setFullScreen(false);
-      document.exitFullscreen();
+      await document.exitFullscreen();
     } else {
-      console.log("opening");
-      setFullScreen(true);
-      document.body.requestFullscreen();
-    }
-  }, []);
-
-  const handleUserKeyPress = useCallback((event) => {
-    if (event.keyCode === 70) {
-      console.log("f is pressed");
-      handleFullScreen();
+      await document.body.requestFullscreen();
     }
   }, []);
 
   useEffect(() => {
-    document.addEventListener("fullscreenchange", handleFullScreen);
-    document.addEventListener("webkitfullscreenchange", handleFullScreen);
-    document.addEventListener("mozfullscreenchange", handleFullScreen);
-    document.addEventListener("MSFullscreenChange", handleFullScreen);
+    const syncFullscreen = () => setFullScreen(!!document.fullscreenElement);
+    document.addEventListener("fullscreenchange", syncFullscreen);
+    document.addEventListener("webkitfullscreenchange", syncFullscreen);
+    document.addEventListener("mozfullscreenchange", syncFullscreen);
+    document.addEventListener("MSFullscreenChange", syncFullscreen);
     return () => {
-      document.removeEventListener("fullscreenchange", handleFullScreen);
-      document.removeEventListener("webkitfullscreenchange", handleFullScreen);
-      document.removeEventListener("mozfullscreenchange", handleFullScreen);
-      document.removeEventListener("MSFullscreenChange", handleFullScreen);
+      document.removeEventListener("fullscreenchange", syncFullscreen);
+      document.removeEventListener("webkitfullscreenchange", syncFullscreen);
+      document.removeEventListener("mozfullscreenchange", syncFullscreen);
+      document.removeEventListener("MSFullscreenChange", syncFullscreen);
     };
-  }, [handleFullScreen]);
+  }, []);
 
   useEffect(() => {
+    const handleUserKeyPress = (event: KeyboardEvent) => {
+      if (event.key === "f") {
+        toggleFullScreen();
+      }
+    };
     window.addEventListener("keydown", handleUserKeyPress);
     return () => {
       window.removeEventListener("keydown", handleUserKeyPress);
     };
-  }, [handleUserKeyPress]);
+  }, []);
 
   const fill = mode === "light" ? "black" : "white";
 
   return (
     <button
       className={`fullscreen-${mode} fullscreen`}
-      onClick={handleFullScreen}
+      onClick={toggleFullScreen}
     >
       {fullscreen ? (
-        <FullscreenOpen fill={fill} />
-      ) : (
         <FullscreenExit fill={fill} />
+      ) : (
+        <FullscreenOpen fill={fill} />
       )}
     </button>
   );
