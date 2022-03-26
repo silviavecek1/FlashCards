@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import Switch from "./components/Switch";
 import * as Animals from "./images/animals";
 import Timer from "./components/Timer";
-import Controls from "./components/Contols";
+// import Controls from "./components/Contols";
 
 const Categories = {
   Animals,
