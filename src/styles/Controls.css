@@ -1,0 +1,19 @@
+.control-container {
+  max-width: 500px;
+  width: 80%;
+  display: flex;
+  justify-content: center;
+}
+
+.control {
+  background: none;
+  border: none;
+}
+
+.control-light {
+  fill: black;
+}
+
+.control-dark {
+  fill: white;
+}

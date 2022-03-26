@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import Switch from "./components/Switch";
 import * as Animals from "./images/animals";
 import Timer from "./components/Timer";
+import Controls from "./components/Contols";
 
 const Categories = {
   Animals,
@@ -40,6 +41,7 @@ function App() {
         <Picture mode={mode} />
       </Card>
       <div className={`name name-${mode}`}>{name}</div>
+      {/* <Controls index={index} setIndex={setIndex} mode={mode} /> */}
       <Timer key={index} mode={mode} />
     </div>
   );

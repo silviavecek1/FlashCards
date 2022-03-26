@@ -13,7 +13,7 @@ module.exports = {
     {
       name: "removeAttrs",
       params: {
-        attrs: "*:(stroke|fill|fill-opacity|fill-rule):((?!^none$).)*",
+        attrs: "*:(stroke|fill|fill-opacity|fill-rule|style):((?!^none$).)*",
       },
     },
 
