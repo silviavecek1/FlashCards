@@ -7,7 +7,7 @@ import * as Animals from "./images/animals";
 import Timer from "./components/Timer";
 import Fullscreen from "./components/Fullscreen";
 import { Mode } from "./types";
-import Controls from "./components/Contols";
+// import Controls from "./components/Contols";
 
 const Categories = {
   Animals,
