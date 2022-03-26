@@ -41,7 +41,7 @@ const Fullscreen = ({ mode }: FullscreenProps) => {
     return () => {
       window.removeEventListener("keydown", handleUserKeyPress);
     };
-  }, []);
+  }, [toggleFullScreen]);
 
   const fill = mode === "light" ? "black" : "white";
 
