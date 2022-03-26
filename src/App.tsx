@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import Switch from "./components/Switch";
 import * as Animals from "./images/animals";
 import Timer from "./components/Timer";
+import Fullscreen from "./components/Fullscreen";
 // import Controls from "./components/Contols";
 
 const Categories = {
@@ -42,6 +43,7 @@ function App() {
       </Card>
       <div className={`name name-${mode}`}>{name}</div>
       {/* <Controls index={index} setIndex={setIndex} mode={mode} /> */}
+      <Fullscreen mode={mode} />
       <Timer key={index} mode={mode} />
     </div>
   );

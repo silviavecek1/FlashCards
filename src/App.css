@@ -1,5 +1,6 @@
 .App {
   height: 100vh;
+  max-height: -webkit-fill-available;
   display: flex;
   align-items: center;
   justify-content: center;
