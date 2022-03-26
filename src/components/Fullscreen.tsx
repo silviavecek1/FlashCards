@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
+import styled from "@emotion/styled";
 import { FullscreenExit, FullscreenOpen } from "../images/controls";
-import "../styles/Fullscreen.css";
 
 type FullscreenProps = {
   mode: string;
@@ -46,17 +46,30 @@ const Fullscreen = ({ mode }: FullscreenProps) => {
   const fill = mode === "light" ? "black" : "white";
 
   return (
-    <button
-      className={`fullscreen-${mode} fullscreen`}
-      onClick={toggleFullScreen}
-    >
+    <Button onClick={toggleFullScreen}>
       {fullscreen ? (
-        <FullscreenExit fill={fill} />
+        <FullscreenExit stroke={fill} height={42} width={42} fill="none" />
       ) : (
-        <FullscreenOpen fill={fill} />
+        <FullscreenOpen fill={fill} height={36} width={36} />
       )}
-    </button>
+    </Button>
   );
 };
 
 export default Fullscreen;
+
+const Button = styled.button`
+  background: none;
+  border: none;
+  max-height: 50px;
+  cursor: pointer;
+  position: absolute;
+  bottom: 2rem;
+  right: 1rem;
+  svg {
+    transition: transform 0.2s ease-in-out;
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
+`;
