@@ -37,6 +37,9 @@ function App() {
     };
   }, [pictures, index]);
 
+  const supportsFullscreen =
+    typeof document.body.requestFullscreen === "function";
+
   return (
     <div className={`App-${mode} App`}>
       <Switch mode={mode} setMode={setMode} />
@@ -45,7 +48,7 @@ function App() {
       </Card>
       <Name mode={mode}>{name}</Name>
       {/* <Controls index={index} setIndex={setIndex} mode={mode} /> */}
-      <Fullscreen mode={mode} />
+      {supportsFullscreen && <Fullscreen mode={mode} />}
       <Timer key={index} mode={mode} />
     </div>
   );
@@ -54,7 +57,7 @@ function App() {
 const Name = styled.div<{ mode: Mode }>`
   text-transform: uppercase;
   font-size: 2.5rem;
-  margin-top: 2rem;
+  margin: 2rem 0;
   font-weight: bold;
   color: ${({ mode }) => (mode === "light" ? "black" : "white")};
   @media (min-width: 460px) {
